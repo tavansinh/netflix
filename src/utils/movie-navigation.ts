@@ -18,7 +18,6 @@ class MovieNavigation {
         this.nextBtn = document.getElementById('next-btn');
 
         if (!this.container || !this.prevBtn || !this.nextBtn) {
-            console.log('movie navigation elements not found');
             return;
         }
 

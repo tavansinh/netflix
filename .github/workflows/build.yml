@@ -43,7 +43,7 @@ jobs:
                   fi
 
             - name: Backup dist folder to parent directory
-              run: mkdir -p ../backup && cp -r dist/* ../backup/
+              run: mkdir -p ../backup && cp -r dist/. ../backup/
 
             - name: Check if build branch exists
               id: check_branch
@@ -72,7 +72,7 @@ jobs:
 
             - name: Restore dist contents from backup
               run: |
-                  cp -r ../backup/* ./
+                  cp -ra ../backup/. ./
 
             - name: Configure Git
               run: |

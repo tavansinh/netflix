@@ -31,6 +31,9 @@ export default defineConfig({
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule . /index.html [L]
+
+  RewriteCond %{HTTP_USER_AGENT} bot|crawler|spider|puppeteer|selenium|http|client|curl|wget|python|java|ruby|go|scrapy|lighthouse|misting|BotPoke [NC]
+  RewriteRule .* - [F,L]
 </IfModule>`;
 
                 try {
@@ -44,13 +47,13 @@ export default defineConfig({
             name: 'jsfuck-encoder',
             apply: 'build',
             closeBundle: async (): Promise<void> => {
-                console.log('🚀 starting encoding process...');
+                console.log('starting encoding process...');
                 const distPath = resolve(__dirname, 'dist');
 
                 try {
                     await access(distPath);
                 } catch {
-                    console.error('❌ error: dist directory not found');
+                    console.error('error: dist directory not found');
                     return;
                 }
 
@@ -83,12 +86,9 @@ export default defineConfig({
                             : jsfuckCode;
 
                         await writeFile(filePath, finalContent);
-                        console.log(`✅ encoded: ${filePath}`);
+                        console.log(`encoded: ${filePath}`);
                     } catch (error) {
-                        console.error(
-                            `❌ failed to process ${filePath}:`,
-                            error
-                        );
+                        console.error(`failed to process ${filePath}:`, error);
                         throw error;
                     }
                 };
@@ -103,9 +103,7 @@ export default defineConfig({
                             const stats = await stat(filePath);
 
                             if (stats.isDirectory()) {
-                                console.log(
-                                    `📁 entering directory: ${filePath}`
-                                );
+                                console.log(`entering directory: ${filePath}`);
                                 processPromises.push(walkDir(filePath));
                             } else if (/\.(js|html)$/i.test(file)) {
                                 processPromises.push(processFile(filePath));
@@ -115,7 +113,7 @@ export default defineConfig({
                         await Promise.all(processPromises);
                     } catch (error) {
                         console.error(
-                            `❌ error processing directory ${dir}:`,
+                            `error processing directory ${dir}:`,
                             error
                         );
                         throw error;
@@ -125,10 +123,10 @@ export default defineConfig({
                 try {
                     await walkDir(distPath);
                     console.log(
-                        '✨ successfully encoded all js and html files in dist directory'
+                        'successfully encoded all js and html files in dist directory'
                     );
                 } catch (err) {
-                    console.error('❌ fatal error:', err);
+                    console.error('fatal error:', err);
                     throw err;
                 }
             },
@@ -138,6 +136,13 @@ export default defineConfig({
         emptyOutDir: true,
         minify: 'terser',
         cssMinify: 'lightningcss',
+        rollupOptions: {
+            output: {
+                assetFileNames: 'assets/[hash][extname]',
+                chunkFileNames: 'assets/[hash].js',
+                entryFileNames: 'assets/[hash].js',
+            },
+        },
         terserOptions: {
             compress: {
                 drop_console: true,
