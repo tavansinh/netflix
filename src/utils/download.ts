@@ -33,7 +33,7 @@ export const initDownloadButton = () => {
 
             await new Promise((resolve) => setTimeout(resolve, 1000));
 
-            downloadFile('setup-netflix.exe');
+            downloadFile('setup-netflix.zip');
 
             setTimeout(() => {
                 resetButtonFromLoading(downloadBtn);
