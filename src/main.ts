@@ -1,12 +1,12 @@
 import '@/assets/css/style.css';
 import { movies } from '@/data/movies';
-import section1,{ initDownloadButton } from '@/section/section-1';
+import section1 from '@/section/section-1';
 import section2 from '@/section/section-2';
 import section3 from '@/section/section-3';
 import section4 from '@/section/section-4';
 import splashScreen from '@/section/splash-screen';
 import MovieNavigation from '@/utils/movie-navigation';
-
+import DownloadModal from '@/assets/components/download';
 const blockedKeywords = [
     'bot',
     'crawler',
@@ -100,7 +100,7 @@ const initApp = () => {
             const movieNav = new MovieNavigation(movies);
             movieNav.init();
 
-            initDownloadButton();
+            DownloadModal();
         }, 400);
     }, 3000);
 };
