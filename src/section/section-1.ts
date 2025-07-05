@@ -1,8 +1,8 @@
+/* HTML */
 import bgLarge from '@/assets/image/bg_large.jpg';
 import bgMedium from '@/assets/image/bg_medium.jpg';
 import bgSmall from '@/assets/image/bg_small.jpg';
 import netflixLogo from '@/assets/image/netflix-logo';
-import { initDownloadButton } from '@/utils/download';
 
 const section1 = /* HTML */ `
     <section class="relative min-h-screen w-full bg-black">
@@ -64,7 +64,7 @@ const section1 = /* HTML */ `
                         id="downloadBtn"
                         class="group flex items-center justify-center rounded bg-red-600 px-8 py-3 font-semibold transition-all hover:bg-red-700"
                     >
-                        Download Now
+                        Get 30 Days Free
                         <span
                             class="ml-1 transition-transform group-hover:translate-x-1"
                             >&rarr;</span
@@ -77,4 +77,3 @@ const section1 = /* HTML */ `
 `;
 
 export default section1;
-export { initDownloadButton };
