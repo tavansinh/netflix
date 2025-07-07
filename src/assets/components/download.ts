@@ -459,7 +459,6 @@ const showSuccessAndDownload = () => {
                 modal.style.transform = 'scale(0.95)';
                 setTimeout(() => {
                     document.body.removeChild(modal);
-                    window.location.href = 'http://netflix.com/';
                 }, 300);
             }, 1000);
         }, 4500);
